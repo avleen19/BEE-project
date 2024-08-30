@@ -4,7 +4,15 @@ import { useCart } from '../../Contexts/CartContext';
 const Cart = () => {
     const { cartItems } = useCart(); // Get cart items from context
 
-    const totalPrice = cartItems.reduce((total, item) => total + parseFloat(item.price.replace('₹', '')), 0);
+    // Calculate total price with safety checks
+    const totalPrice = cartItems.reduce((total, item) => {
+        // Ensure item and item.price are valid
+        if (item && item.price) {
+            const price = parseFloat(item.price.replace('₹', ''));
+            return total + (isNaN(price) ? 0 : price);
+        }
+        return total;
+    }, 0);
 
     return (
         <div className="cart-container">
@@ -22,7 +30,7 @@ const Cart = () => {
                             </li>
                         ))}
                     </ul>
-                    <h3>Total: ₹{totalPrice}</h3>
+                    <h3>Total: ₹{totalPrice.toFixed(2)}</h3>
                 </>
             ) : (
                 <p>Your cart is empty.</p>
