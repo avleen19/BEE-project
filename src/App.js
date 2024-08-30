@@ -10,8 +10,10 @@ import Footer from "./Components/Footer";
 import ContactUs from "./Components/ContactUs";
 import AboutUs from "./Components/Aboutus";
 import Products from "./Components/Products";
-
-
+import Cart from "./Components/Cart";
+import AddToCartButton from "./Components/AddToCartButton";
+import { CartProvider } from "./Contexts/CartContext";
+import SignUp from "./Components/SignUp/SignUp";
 
 export const MyContext = createContext();
 function App() {
@@ -37,6 +39,7 @@ function App() {
 
   return (
       <>
+       <CartProvider>
        <MyContext.Provider value={values}>
 
       <Header />
@@ -45,10 +48,12 @@ function App() {
         <Route path="/ContactUs" element={<ContactUs />} />
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Products" element={<Products />} />
+        <Route path="/Cart" element={<Cart />} />
+        <Route path="/SignUp" element={<SignUp />} /> {/* Add the SignUp route */}
       </Routes>
       <Footer />
       </MyContext.Provider>
-
+      </CartProvider>
    </>
   );
 }

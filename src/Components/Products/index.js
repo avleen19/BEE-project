@@ -1,5 +1,6 @@
-import React from 'react';
 
+import React from 'react';
+import AddToCartButton from '../AddToCartButton';
 
 const products = [
   { id: 1, name: 'Test Tube', price: '₹200', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnXfysxkcncvNOnX6F3DaZ6HqBRZfUh3lGesg70bvyzRFCMkJzcTG-V0TFeLuX04qQJL0&usqp=CAU' },
@@ -23,18 +24,18 @@ const products = [
 const Products = () => {
     return (
         <div className='prodspg'>
-        <h2 className='headprod'>Products</h2>
-        <div className="products-container">
-          {products.map(product => (
-            <div key={product.id} className="product-card">
-              <img src={product.image} alt={product.name} className="product-image" />
-              <p className="product-name">{product.name}</p>
-              <p className="product-price">{product.price}</p>
-              <button className="add-to-cart-btn">Add to Cart</button>
+            <h2 className='headprod'>Products</h2>
+            <div className="products-container">
+                {products.map(product => (
+                    <div key={product.id} className="product-card">
+                        <img src={product.image} alt={product.name} className="product-image" />
+                        <p className="product-name">{product.name}</p>
+                        <p className="product-price">{product.price}</p>
+                        <AddToCartButton item={product} /> {/* Pass product data */}
+                    </div>
+                ))}
             </div>
-          ))}
         </div>
-      </div>
     );
-  };
+};
 export default Products;
