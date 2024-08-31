@@ -39,8 +39,8 @@ const Header =()=>{
           
           <div className='part3 d-flex align-items-center '>
           <Link to="/signUp">
-                                    <Button className='circle mr-3'><FaUser /></Button>
-                                </Link>
+          <Button className='circle mr-3'><FaUser /></Button>
+          </Link>
                   <div className='ml-auto cartTab'>
                     <AddToCartButton />
                   </div>

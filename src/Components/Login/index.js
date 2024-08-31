@@ -1,19 +1,16 @@
-
-
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const SignUp = () => {
+const Login = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    password: '',
-    confirmPassword: '',
+    password: ''
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate(); // Updated hook
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,62 +21,38 @@ const SignUp = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-  
-    // Basic validation
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match.');
-      return;
-    }
-  
+
     try {
-      const response = await fetch('http://localhost:5000/api/sign-up', {
+      const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData)
       });
-  
+
       const data = await response.json();
-  
       if (response.ok) {
-        setSuccess('Sign-up successful! Welcome aboard.');
-        setFormData({
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
+        setSuccess('Login successful! Redirecting...');
+        setTimeout(() => {
+          navigate('/dashboard'); // Updated to use navigate for redirection
+        }, 1500);
       } else {
-        console.error('Response error:', data); // Log the error data
-        setError(data.message || 'Something went wrong.');
+        setError(data.message || 'Login failed. Please try again.');
       }
-    } catch (error) {
-      console.error('Fetch error:', error); // Log the fetch error
-      setError('Failed to connect to the server. Please try again later.');
+    } catch (err) {
+      setError('An error occurred. Please try again later.');
     }
   };
-  
 
   return (
-    <Container className="sign-up-container">
+    <Container className="login-container">
       <Row className="justify-content-center">
         <Col md={6} lg={4}>
-          <h2 className="text-center mb-4">Sign Up</h2>
+          <h2 className="text-center mb-4">Login</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {success && <Alert variant="success">{success}</Alert>}
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter your name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
             <Form.Group controlId="formEmail">
               <Form.Label>Email address</Form.Label>
               <Form.Control
@@ -102,25 +75,14 @@ const SignUp = () => {
                 required
               />
             </Form.Group>
-            <Form.Group controlId="formConfirmPassword">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm your password"
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
             <Button variant="primary" type="submit" className="mt-3">
-              Sign Up
+              Login
             </Button>
           </Form>
           <div className="text-center mt-3">
-            <p>Already have an account?</p>
-            <Link to="/login">
-              <Button variant="link">Login</Button>
+            <p>Don't have an account?</p>
+            <Link to="/signup">
+              <Button variant="link">Sign Up</Button>
             </Link>
           </div>
         </Col>
@@ -129,4 +91,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Login;

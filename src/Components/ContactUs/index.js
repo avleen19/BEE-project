@@ -14,15 +14,16 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+  
     if (formData.name && formData.email && formData.message) {
-      axios.post('/api/contact', formData)
+      axios.post('http://localhost:5000/api/contact', formData)
         .then(response => {
           console.log('Form submitted successfully:', response.data);
           setFormData({ name: '', email: '', message: '' });
         })
         .catch(error => {
-          console.error('There was an error submitting the form:', error);
+          console.error('There was an error submitting the form:', error.response ? error.response.data : error.message);
+          alert("There was an error submitting the form. Please try again.");
         });
     } else {
       alert("All fields are required!");
