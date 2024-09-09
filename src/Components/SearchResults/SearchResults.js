@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-
+import AddToCartButton from '../AddToCartButton';
 
 const SearchResults = () => {
     const location = useLocation();
@@ -18,6 +18,7 @@ const SearchResults = () => {
                             <img src={product.image} alt={product.name} className="product-image" />
                             <h3 className="product-name">{product.name}</h3>
                             <p className="product-price">{product.price}</p>
+                            <AddToCartButton item={product} /> 
                         </div>
                     ))
                 )}

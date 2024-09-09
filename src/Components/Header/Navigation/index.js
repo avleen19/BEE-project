@@ -1,14 +1,11 @@
-
-
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import { IoIosMenu } from "react-icons/io";
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 const Navigation = () => {
   const [isOpenSidebarVal, setIsOpenSidebarVal] = useState(false);
-  
 
   return (
     <nav>
@@ -19,7 +16,6 @@ const Navigation = () => {
               <Button 
                 className='allCatTab align-items-center' 
                 onClick={() => setIsOpenSidebarVal(!isOpenSidebarVal)}
-                
               >
                 <span className='icon1'><IoIosMenu /></span>
                 <span className="text">ALL CATEGORIES</span>
@@ -27,32 +23,32 @@ const Navigation = () => {
               </Button>
               <div className={`sidebarNav ${isOpenSidebarVal ? 'open' : ''}`}>
                 <ul>
-                  <li><Link to='/'><Button>Glassware</Button></Link></li>
-                  <li><Link to='/'><Button>Plasticware</Button></Link></li>
-                  <li><Link to='/'><Button>Lab equipments</Button></Link></li>
-                  <li><Link to='/'><Button>Medical equipments</Button></Link></li>
-                  <li><Link to='/'><Button>Surgical equipments</Button></Link></li>
-                  <li><Link to='/'><Button>Emergency equipments</Button></Link></li>
-                  <li><Link to='/'><Button>Accessories and Parts</Button></Link></li>
+                  <li><Link to='/products/1'><Button>Glassware</Button></Link></li>
+                  <li><Link to='/products/2'><Button>Plasticware</Button></Link></li>
+                  <li><Link to='/products/3'><Button>Lab equipments</Button></Link></li>
+                  <li><Link to='/products/4'><Button>Medical equipments</Button></Link></li>
+                  <li><Link to='/products/5'><Button>Surgical equipments</Button></Link></li>
+                  <li><Link to='/products/6'><Button>Emergency equipments</Button></Link></li>
+                  <li><Link to='/products/7'><Button>Accessories and Parts</Button></Link></li>
                 </ul>
               </div>
             </div>
           </div>
-          
+
           <div className='col-sm-10 navPart2 d-flex align-items-center'>
             <ul className='list list-inline ml-auto'>
-            <li className='list-inline-item'>
-  <Link to="/">HOME</Link>
-</li>
-<li className='list-inline-item'>
-  <Link to="/AboutUs">ABOUT US</Link> 
-</li>
-<li className='list-inline-item'>
-  <Link to="/Products">PRODUCTS</Link> 
-</li>
-<li className='list-inline-item'>
-  <Link to="/ContactUs">CONTACT US</Link> 
-</li>
+              <li className='list-inline-item'>
+                <Link to="/">HOME</Link>
+              </li>
+              <li className='list-inline-item'>
+                <Link to="/AboutUs">ABOUT US</Link> 
+              </li>
+              <li className='list-inline-item'>
+                <Link to="/products">PRODUCTS</Link> 
+              </li>
+              <li className='list-inline-item'>
+                <Link to="/ContactUs">CONTACT US</Link> 
+              </li>
             </ul>
           </div>
         </div>

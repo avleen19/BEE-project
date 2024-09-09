@@ -7,6 +7,7 @@ const ContactUs = () => {
     email: '',
     message: '',
   });
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,6 +21,10 @@ const ContactUs = () => {
         .then(response => {
           console.log('Form submitted successfully:', response.data);
           setFormData({ name: '', email: '', message: '' });
+          setShowPopup(true);
+          setTimeout(() => {
+            setShowPopup(false); 
+          }, 3000);
         })
         .catch(error => {
           console.error('There was an error submitting the form:', error.response ? error.response.data : error.message);
@@ -71,6 +76,11 @@ const ContactUs = () => {
           height: '400px'
         }}
       ></div>
+      {showPopup && (
+        <div className="popup">
+          <p>Message Sent Successfully!</p>
+        </div>
+      )}
     </div>
   );
 };

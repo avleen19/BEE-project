@@ -25,7 +25,6 @@ const SignUp = () => {
     setError('');
     setSuccess('');
   
-    // Basic validation
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
       return;
@@ -51,11 +50,11 @@ const SignUp = () => {
           confirmPassword: '',
         });
       } else {
-        console.error('Response error:', data); // Log the error data
+        console.error('Response error:', data); 
         setError(data.message || 'Something went wrong.');
       }
     } catch (error) {
-      console.error('Fetch error:', error); // Log the fetch error
+      console.error('Fetch error:', error);
       setError('Failed to connect to the server. Please try again later.');
     }
   };

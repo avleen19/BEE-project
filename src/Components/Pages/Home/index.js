@@ -6,8 +6,8 @@ const Home =()=>{
     return(
       <>
      <HomeBanner></HomeBanner>
-     <AboutUs></AboutUs>
      <Products></Products>
+     <AboutUs></AboutUs>
       </>
     )
   }

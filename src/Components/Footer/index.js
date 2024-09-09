@@ -27,18 +27,18 @@ const Footer = () => {
         </div>
         <div className="footer-section">
           <h4>Contact Us</h4>
-          <p>Email: support@udariyaan.com</p>
-          <p>Phone: +917696055074</p>
-          <p>Address: 123 Travel Street, City, Country</p>
+          <p>Email: support@medimart.com</p>
+          <p>Phone: +9189564321</p>
+          <p>Address: 123 new city</p>
         </div>
         <div className="footer-section">
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#">Home</a></li>
-            <li><a href="#">Flights</a></li>
-            <li><a href="#">Hotels</a></li>
-            <li><a href="#">Holiday Packages</a></li>
-            <li><a href="#">Car Rentals</a></li>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">products</a></li>
+            <li><a href="#">contact us</a></li>
+            
           </ul>
         </div>
         <div className="footer-section">
@@ -57,7 +57,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2024 Udariyaan. All rights reserved.</p>
+        <p>&copy; 2024 Medimart. All rights reserved.</p>
         {showScrollTop && (
           <button onClick={scrollToTop} id="topBtn" title="Go to top">
             Top

@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Logo from '../../assets/images/logo.png';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const navigate = useNavigate(); // Updated hook
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +36,8 @@ const Login = () => {
       if (response.ok) {
         setSuccess('Login successful! Redirecting...');
         setTimeout(() => {
-          navigate('/dashboard'); // Updated to use navigate for redirection
+          onLogin();  
+          navigate('/'); 
         }, 1500);
       } else {
         setError(data.message || 'Login failed. Please try again.');
@@ -48,7 +50,10 @@ const Login = () => {
   return (
     <Container className="login-container">
       <Row className="justify-content-center">
-        <Col md={6} lg={4}>
+        <Col md={6} lg={4} className="login-col">
+          <div className="logo-container">
+            <img src={Logo} alt="Logo" className="logo" />
+          </div>
           <h2 className="text-center mb-4">Login</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           {success && <Alert variant="success">{success}</Alert>}
